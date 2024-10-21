@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Component
@@ -23,6 +24,7 @@ public class CustomAuthTokenConvertor implements Converter<Jwt,CustomJwtAuthToke
     public CustomJwtAuthToken convert(Jwt source) {
         String sub=(String)source.getClaims().get("sub");
         if(userRepo.existsById(sub)) {
+            System.out.println("bababooey");
             List<GrantedAuthority> roles = userRepo.findRolesById(sub).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
             return new CustomJwtAuthToken(source, roles);
         }
