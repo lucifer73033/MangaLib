@@ -1,19 +1,16 @@
-package com.MangaLib.MangaLib.User.AuthToken;
+package com.MangaLib.MangaLib.User.AuthUtilities;
 
-import com.MangaLib.MangaLib.User.LibUser;
+import com.MangaLib.MangaLib.User.POJOs.LibUser;
 import com.MangaLib.MangaLib.User.UserRepo;
 //import jdk.incubator.vector.VectorOperators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Component

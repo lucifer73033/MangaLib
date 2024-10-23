@@ -11,7 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // 		Data Mongo
 // Done 2)Do HTTP Basic Login
 // Done 3)Test JWT
-// 4)check mangadex endpoints
+// Done 4)check mangadex endpoints
+// 5)Implement showing data to the front end of the
 
 //TODO
 // Learn

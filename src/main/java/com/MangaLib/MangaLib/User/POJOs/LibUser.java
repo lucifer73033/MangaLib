@@ -1,4 +1,4 @@
-package com.MangaLib.MangaLib.User;
+package com.MangaLib.MangaLib.User.POJOs;
 
 import org.springframework.data.annotation.Id;
 

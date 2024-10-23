@@ -1,5 +1,6 @@
 package com.MangaLib.MangaLib.User;
 
+import com.MangaLib.MangaLib.User.POJOs.LibUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

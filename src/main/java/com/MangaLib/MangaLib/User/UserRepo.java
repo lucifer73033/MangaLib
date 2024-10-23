@@ -1,5 +1,6 @@
 package com.MangaLib.MangaLib.User;
 
+import com.MangaLib.MangaLib.User.POJOs.LibUser;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
