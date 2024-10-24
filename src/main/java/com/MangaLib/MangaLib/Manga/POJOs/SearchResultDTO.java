@@ -1,21 +1,24 @@
 package com.MangaLib.MangaLib.Manga.POJOs;
 
-import org.springframework.data.mongodb.core.mapping.Field;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 import java.util.stream.Collectors;
 //import java.util.jar.Attributes;
 
-public class SearchResult {
-    private  List<SearchResultManga> data;
+public class SearchResultDTO {
+    @JsonProperty("data")
+    private  List<SearchResultManga> searchResultMangaList;
     private  Integer total;
     public static class SearchResultManga{
         private  String id;
+
         private  Attributes attributes;
         private  List<Relationship> relationships;
         public static class Attributes{
             private  Title title;
             public static class Title{
+                @JsonProperty(value="en",required = false)
                 private  String en;
 
                 public Title(String en) {
@@ -96,7 +99,7 @@ public class SearchResult {
         }
         @Override
         public String toString(){
-            return attributes.title.en+" "+relationships.stream().filter(s->s.type.equals("cover_art")).map(s->s.id).collect(Collectors.toList());
+            return id+" "+attributes.title.en +" "+relationships.stream().filter(s->s.type.equals("cover_art")).map(s->s.id).collect(Collectors.toList());
         }
 
         public void setId(String id) {
@@ -112,22 +115,22 @@ public class SearchResult {
         }
     }
 
-    public SearchResult(List<SearchResultManga> data, Integer total) {
-        this.data = data;
+    public SearchResultDTO(List<SearchResultManga> searchResultMangaList, Integer total) {
+        this.searchResultMangaList = searchResultMangaList;
         this.total = total;
     }
-    public SearchResult() {
+    public SearchResultDTO() {
     }
-    public List<SearchResultManga> getData() {
-        return data;
+    public List<SearchResultManga> getSearchResultMangaList() {
+        return searchResultMangaList;
     }
 
     public Integer getTotal() {
         return total;
     }
 
-    public void setData(List<SearchResultManga> data) {
-        this.data = data;
+    public void setSearchResultMangaList(List<SearchResultManga> searchResultMangaList) {
+        this.searchResultMangaList = searchResultMangaList;
     }
 
     public void setTotal(Integer total) {

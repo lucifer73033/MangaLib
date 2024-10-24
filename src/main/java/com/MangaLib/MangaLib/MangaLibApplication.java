@@ -16,12 +16,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //TODO
 // Learn
-// 1)Oauth Client
-// 2)Rate Limiting
-// 3)Caching
-// 4)Batching API Request and
+// ! Read up the MongoObjectMapper
+//   Documentation
+// ! Using Lombok
+// ! Oauth Client
+// ! Rate Limiting
+// ! Caching
+// ! Batching API Request and
 //   pagination
-// 5)Threading and its applica
+// ! Threading and its applica
 //   tions here
 @SpringBootApplication
 public class MangaLibApplication {

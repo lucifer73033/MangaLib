@@ -1,4 +1,4 @@
-package com.MangaLib.MangaLib.User;
+package com.MangaLib.MangaLib;
 
 import com.MangaLib.MangaLib.User.AuthUtilities.CustomAuthTokenConvertor;
 import com.MangaLib.MangaLib.User.AuthUtilities.CustomBasicAuthProvider;
