@@ -1,161 +1,105 @@
 package com.MangaLib.MangaLib.Manga.POJOs;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
 public class MangaDTO {
-    private Data data;
+    private final Data data;
     public static class Data{
-        private String id;
-        private Attributes attributes;
-        private List<Relationship> relationships;
+        private final String id;
+        private final Attributes attributes;
+        private final List<Relationship> relationships;
         public static class Attributes{
-            private Title title;
-            private Description description;
+            private final Title title;
+            private final Description description;
             public static class Title{
-                String en;
-
-                public Title(String en) {
-                    this.en = en;
+                @JsonProperty("en")@JsonInclude(JsonInclude.Include.NON_EMPTY)
+                String name;
+                @JsonCreator
+                public Title(String name) {
+                    this.name = name;
                 }
-
-                public Title() {
-                }
-
-                public String getEn() {
-                    return en;
-                }
-
-                public void setEn(String en) {
-                    this.en = en;
+                public String getName() {
+                    return name;
                 }
             }
             public static class Description{
-                @JsonProperty("en")
-                private String en;
-
-                public Description(String en) {
-                    this.en = en;
+                @JsonProperty("en")@JsonInclude(JsonInclude.Include.NON_EMPTY)
+                private final String description;
+                @JsonCreator
+                public Description(String description) {
+                    this.description = description;
                 }
 
-                public Description() {
+
+                public String getDescription() {
+                    return description;
                 }
 
-                public String getEn() {
-                    return en;
-                }
-
-                public void setEn(String en) {
-                    this.en = en;
-                }
             }
-
+            @JsonCreator
             public Attributes(Title title, Description description) {
                 this.title = title;
                 this.description = description;
             }
 
-            public Attributes() {
-            }
 
             public Title getTitle() {
                 return title;
             }
-
-            public void setTitle(Title title) {
-                this.title = title;
-            }
-
             public Description getDescription() {
                 return description;
             }
 
-            public void setDescription(Description description) {
-                this.description = description;
-            }
         }
         public static class Relationship{
-            private String id;
-            private String type;
-
+            private final String id;
+            private final String type;
+            @JsonCreator
             public Relationship(String id, String type) {
                 this.id = id;
                 this.type = type;
             }
-
-            public Relationship() {
-            }
-
             public String getId() {
                 return id;
             }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
             public String getType() {
                 return type;
             }
-
-            public void setType(String type) {
-                this.type = type;
-            }
         }
-
+        @JsonCreator
         public Data(String id, Attributes attributes, List<Relationship> relationships) {
             this.id = id;
             this.attributes = attributes;
             this.relationships = relationships;
         }
 
-        public Data() {
-        }
-
         public String getId() {
             return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
         }
 
         public Attributes getAttributes() {
             return attributes;
         }
 
-        public void setAttributes(Attributes attributes) {
-            this.attributes = attributes;
-        }
-
         public List<Relationship> getRelationships() {
             return relationships;
         }
 
-        public void setRelationships(List<Relationship> relationships) {
-            this.relationships = relationships;
-        }
     }
-
+    @JsonCreator
     public MangaDTO(Data data) {
         this.data = data;
     }
-
-    public MangaDTO() {
-    }
-
     public Data getData() {
         return data;
     }
-
-    public void setData(Data data) {
-        this.data = data;
-    }
-
     @Override
     public String toString(){
-        return data.id+"\n"+data.getAttributes().title.getEn()+"\n"+data.getAttributes().description.getEn()+"\n"
+        return data.id+"\n"+data.getAttributes().title.getName()+"\n"+data.getAttributes().description.getDescription()+"\n"
                 +data.getRelationships().stream().filter(s->s.type.equals("author")||s.type.equals("artist")||s.type.equals("cover_art")).map(s->s.id+" "+s.type).toList();
     }
 }

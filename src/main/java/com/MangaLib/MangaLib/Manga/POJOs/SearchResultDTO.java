@@ -1,5 +1,6 @@
 package com.MangaLib.MangaLib.Manga.POJOs;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -8,84 +9,53 @@ import java.util.stream.Collectors;
 
 public class SearchResultDTO {
     @JsonProperty("data")
-    private  List<SearchResultManga> searchResultMangaList;
-    private  Integer total;
+    private final  List<SearchResultManga> searchResultMangaList;
+    private final  Integer total;
     public static class SearchResultManga{
-        private  String id;
+        private final  String id;
 
-        private  Attributes attributes;
-        private  List<Relationship> relationships;
+        private final  Attributes attributes;
+        private final  List<Relationship> relationships;
         public static class Attributes{
-            private  Title title;
+            private final  Title title;
             public static class Title{
                 @JsonProperty(value="en",required = false)
-                private  String en;
-
-                public Title(String en) {
-                    this.en = en;
+                private final  String name;
+                @JsonCreator
+                public Title(String name) {
+                    this.name = name;
                 }
 
-                public String getEn() {
-                    return en;
-                }
-
-                public Title() {
-                }
-
-                public void setEn(String en) {
-                    this.en = en;
+                public String getName() {
+                    return name;
                 }
             }
-
+            @JsonCreator
             public Attributes(Title title) {
                 this.title = title;
             }
-
-            public Attributes() {
-            }
-
             public Title getTitle() {
                 return title;
             }
-
-            public void setTitle(Title title) {
-                this.title = title;
-            }
         }
         public static class Relationship{
-            private  String id;
-            private  String type;
-
+            private final  String id;
+            private final  String type;
+            @JsonCreator
             public Relationship(String id, String type) {
                 this.id = id;
                 this.type = type;
             }
-
-            public Relationship() {
-            }
-
             public String getId() {
                 return id;
             }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public void setType(String type) {
-                this.type = type;
-            }
         }
-
+        @JsonCreator
         public SearchResultManga(String id, Attributes attributes, List<Relationship> relationships) {
             this.id = id;
             this.attributes = attributes;
             this.relationships = relationships;
         }
-
-        public SearchResultManga() {
-        }
-
         public String getId() {
             return id;
         }
@@ -99,27 +69,13 @@ public class SearchResultDTO {
         }
         @Override
         public String toString(){
-            return id+" "+attributes.title.en +" "+relationships.stream().filter(s->s.type.equals("cover_art")).map(s->s.id).collect(Collectors.toList());
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public void setAttributes(Attributes attributes) {
-            this.attributes = attributes;
-        }
-
-        public void setRelationships(List<Relationship> relationships) {
-            this.relationships = relationships;
+            return id+" "+attributes.title.name +" "+relationships.stream().filter(s->s.type.equals("cover_art")).map(s->s.id).collect(Collectors.toList());
         }
     }
-
+    @JsonCreator
     public SearchResultDTO(List<SearchResultManga> searchResultMangaList, Integer total) {
         this.searchResultMangaList = searchResultMangaList;
         this.total = total;
-    }
-    public SearchResultDTO() {
     }
     public List<SearchResultManga> getSearchResultMangaList() {
         return searchResultMangaList;
@@ -127,13 +83,5 @@ public class SearchResultDTO {
 
     public Integer getTotal() {
         return total;
-    }
-
-    public void setSearchResultMangaList(List<SearchResultManga> searchResultMangaList) {
-        this.searchResultMangaList = searchResultMangaList;
-    }
-
-    public void setTotal(Integer total) {
-        this.total = total;
     }
 }
