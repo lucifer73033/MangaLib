@@ -4,22 +4,22 @@ import com.MangaLib.MangaLib.User.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//TODO
-// Implement
 // Done 1)Implement User funct
 // 		ioanality using SS and Spring
 // 		Data Mongo
 // Done 2)Do HTTP Basic Login
 // Done 3)Test JWT
 // Done 4)check mangadex endpoints
-// 5)Implement showing data to the front end of the
+//TODO
+// Implement
+// 5)Implement showing data to the front end
+// 6)Implement User Data Management
+// 7)Rate Limiting
 
 //TODO
 // Learn
 // ! Read up the MongoObjectMapper
 //   Documentation
-// ! Using Lombok
-// ! Oauth Client
 // ! Rate Limiting
 // ! Caching
 // ! Batching API Request and

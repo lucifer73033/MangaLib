@@ -1,4 +1,4 @@
-package com.MangaLib.MangaLib;
+package com.MangaLib.MangaLib.Configuration;
 
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
-@EnableMongoRepositories
+@EnableMongoRepositories(basePackages = "com.MangaLib.MangaLib")
 public class MongoConfig extends AbstractMongoClientConfiguration {
     @Value("${db_username}")
     private String username;
