@@ -3,6 +3,7 @@ package com.MangaLib.MangaLib.Manga.POJOs;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.w3c.dom.Attr;
 
 import java.util.List;
 
@@ -75,6 +76,11 @@ public class MangaDTO {
             this.id = id;
             this.attributes = attributes;
             this.relationships = relationships;
+        }
+        public Data(String id){
+            this.id=id;
+            this.attributes=null;
+            this.relationships=null;
         }
 
         public String getId() {

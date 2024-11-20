@@ -2,6 +2,7 @@ package com.MangaLib.MangaLib.Manga;
 
 import com.MangaLib.MangaLib.Manga.POJOs.MangaDTO;
 import com.MangaLib.MangaLib.Manga.POJOs.SearchResultDTO;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

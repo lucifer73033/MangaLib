@@ -1,9 +1,11 @@
 package com.MangaLib.MangaLib;
 
 import com.MangaLib.MangaLib.User.UserRepo;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 // Done 1)Implement User funct
 // 		ioanality using SS and Spring
 // 		Data Mongo
@@ -28,12 +30,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //   tions here
 @SpringBootApplication
 public class MangaLibApplication {
-	@Autowired
-	private UserRepo userRepo;
+
 
 	public static void main(String[] args) {
 
 		SpringApplication.run(MangaLibApplication.class, args);
+
 	}
 
 }
