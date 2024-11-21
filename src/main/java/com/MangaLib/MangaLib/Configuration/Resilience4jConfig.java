@@ -13,13 +13,20 @@ import java.util.Map;
 
 @Configuration
 public class Resilience4jConfig {
-    @Bean(value = "manga")
-    RateLimiterConfigCustomizer rateLimiterConfigCustomizer(){
-        return RateLimiterConfigCustomizer.of("manga",builder -> builder
-                .limitRefreshPeriod(Duration.ofMinutes(10))
-                .limitForPeriod(1)
+    @Bean(value = "default")
+    RateLimiterConfigCustomizer rateLimiterConfigCustomizer1(){
+        return RateLimiterConfigCustomizer.of("default",builder -> builder
+                .limitRefreshPeriod(Duration.ofSeconds(1))
+                .limitForPeriod(5)
                 .timeoutDuration(Duration.ofSeconds(0))
                 .build());
     }
-    @Bean(value = "")
+    @Bean(value= "atHome")
+    RateLimiterConfigCustomizer rateLimiterConfigCustomizer2(){
+        return RateLimiterConfigCustomizer.of("atHome",builder -> builder
+                .limitRefreshPeriod(Duration.ofMinutes(1))
+                .limitForPeriod(40)
+                .timeoutDuration(Duration.ofSeconds(0))
+                .build());
+    }
 }

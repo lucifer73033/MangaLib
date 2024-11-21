@@ -30,4 +30,9 @@ public class MangaController {
         Optional mangaDTO=mangaService.getDetails(id);
         return mangaDTO.isPresent()?ResponseEntity.status(200).body(mangaDTO.get()):ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
     }
+    @GetMapping("manga/chapters/{id}")
+    public ResponseEntity<?> getChapters(@PathVariable String id,@RequestParam int limit,@RequestParam int offset){
+        Optional chaptersListDTO=mangaService.getChaptersList(id,limit,offset);
+        return chaptersListDTO.isPresent()?ResponseEntity.status(200).body(chaptersListDTO.get()):ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
+    }
 }
