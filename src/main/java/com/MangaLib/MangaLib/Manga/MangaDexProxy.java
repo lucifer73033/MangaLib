@@ -1,5 +1,6 @@
 package com.MangaLib.MangaLib.Manga;
 
+import com.MangaLib.MangaLib.Manga.POJOs.ChapterDTO;
 import com.MangaLib.MangaLib.Manga.POJOs.ChaptersListDTO;
 import com.MangaLib.MangaLib.Manga.POJOs.MangaDTO;
 import com.MangaLib.MangaLib.Manga.POJOs.SearchResultDTO;
@@ -17,4 +18,6 @@ public interface MangaDexProxy{
     public MangaDTO getDetails(@PathVariable String id);
     @GetMapping("manga/{id}/feed")
     public ChaptersListDTO getChaptersList(@PathVariable String id, @RequestParam("translatedLanguage[]") String language, @RequestParam("order[chapter]") String order, @RequestParam(value = "limit", required = false) Integer limit, @RequestParam(value = "offset", required = false) Integer offset);
+    @GetMapping("at-home/server/{id}")
+    public ChapterDTO getPages(@PathVariable String id);
 }

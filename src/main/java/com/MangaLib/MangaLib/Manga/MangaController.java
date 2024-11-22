@@ -1,5 +1,6 @@
 package com.MangaLib.MangaLib.Manga;
 
+import com.MangaLib.MangaLib.Manga.POJOs.ChapterDTO;
 import com.MangaLib.MangaLib.Manga.POJOs.MangaDTO;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
@@ -34,5 +35,10 @@ public class MangaController {
     public ResponseEntity<?> getChapters(@PathVariable String id,@RequestParam int limit,@RequestParam int offset){
         Optional chaptersListDTO=mangaService.getChaptersList(id,limit,offset);
         return chaptersListDTO.isPresent()?ResponseEntity.status(200).body(chaptersListDTO.get()):ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
+    }
+    @GetMapping("/read/{id}")
+    public ResponseEntity<?> getPages(@PathVariable String id){
+        Optional<ChapterDTO> pages=mangaService.getPages(id);
+        return pages.isPresent()?ResponseEntity.status(200).body(pages.get().getPages()):ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
     }
 }

@@ -1,9 +1,12 @@
 package com.MangaLib.MangaLib.Manga;
 
+import com.MangaLib.MangaLib.Manga.POJOs.ChapterDTO;
 import com.MangaLib.MangaLib.Manga.POJOs.ChaptersListDTO;
 import com.MangaLib.MangaLib.Manga.POJOs.MangaDTO;
 import com.MangaLib.MangaLib.Manga.POJOs.SearchResultDTO;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +19,7 @@ public class MangaService {
 
     public MangaService(MangaDexProxy mangaDexProxy) {
         this.mangaDexProxy = mangaDexProxy;
+
     }
     public SearchResultDTO search(@RequestParam String title, @RequestParam Integer limit, @RequestParam Integer offset){
         return mangaDexProxy.search(title,limit,offset);
@@ -29,6 +33,12 @@ public class MangaService {
     public Optional<ChaptersListDTO> getChaptersList(String id,int limit,int offset){
         return Optional.of(mangaDexProxy.getChaptersList(id,"en","asc",limit,offset));
     }
+
+    @RateLimiter(name="AtHome",fallbackMethod = "mangaFallback")
+    public Optional<ChapterDTO> getPages(String id){
+        return Optional.of(mangaDexProxy.getPages(id));
+    }
+
     private Optional<MangaDTO> mangaFallback(String id,Throwable e){
         return Optional.empty();
     }
