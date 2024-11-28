@@ -2,6 +2,7 @@ package com.MangaLib.MangaLib.Manga;
 
 import com.MangaLib.MangaLib.Manga.POJOs.ChapterDTO;
 import com.MangaLib.MangaLib.Manga.POJOs.MangaDTO;
+import com.MangaLib.MangaLib.Manga.POJOs.SearchResultDTO;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,9 @@ public class MangaController {
     }
 
     @GetMapping("/search")
-    public List<String> searchResultTest(@RequestParam String title,@RequestParam int limit,@RequestParam int offset){
-        return mangaService.search(title,limit,offset).getSearchResultMangaList().stream().map(s->s.toString()).collect(Collectors.toList());
+    public ResponseEntity<?> searchResultTest(@RequestParam String title,@RequestParam int limit,@RequestParam int offset){
+        Optional<SearchResultDTO> searchResult=mangaService.search(title,limit,offset);
+        return searchResult.isPresent()?ResponseEntity.status(200).body(searchResult.get().getSearchResultMangaList().stream().map(s->s.toString()).collect(Collectors.toList())):ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
     }
     @GetMapping("/manga/{id}")
     public ResponseEntity<?> getDetails(@PathVariable String id) {

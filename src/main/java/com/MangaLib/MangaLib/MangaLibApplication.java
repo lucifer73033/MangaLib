@@ -18,6 +18,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 // 5)Implement showing data to the front end
 // 6)Implement User Data Management
 // 8)Caching
+// 9)Batching API requests
 
 
 //TODO
