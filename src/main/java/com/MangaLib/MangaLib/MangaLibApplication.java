@@ -13,11 +13,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 // Done 3)Test JWT
 // Done 4)check mangadex endpoints
 // Done 7)Rate Limiting
+// Done 8)Caching
 //TODO
 // Implement
 // 5)Implement showing data to the front end
 // 6)Implement User Data Management
-// 8)Caching
 // 9)Batching API requests
 
 
@@ -25,9 +25,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 // Learn
 // ! Read up the MongoObjectMapper
 //   Documentation
-// ! Caching
-// ! Batching API Request and
-//   pagination
 // ! Threading and its applica
 //   tions here
 @SpringBootApplication
